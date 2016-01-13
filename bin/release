@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 cat << EOF
 ---
+config_vars:
+  FROST_ENV: production
 addons:
-default_process_types:
-  web: ./app --port \$PORT
+  - heroku-postgresql
 EOF
