@@ -2,8 +2,8 @@
 
 cat << EOF
 ---
-config_vars:
-  FROST_ENV: production
 addons:
-  - heroku-postgresql
+  []
+default_process_types:
+  web: make run
 EOF

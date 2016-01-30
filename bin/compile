@@ -7,6 +7,18 @@ CRYSTAL_URL="https://github.com/manastech/crystal/releases/download/0.10.2/cryst
 CRYSTAL_DIR=/tmp/crystal
 unset GIT_DIR
 
+config_vars_to_export=(DATABASE_URL)
+
+function export_config_vars() {
+  for config_var in ${config_vars_to_export[@]}; do
+    if [ -d $ENV_DIR ] && [ -f $ENV_DIR/${config_var} ]; then
+      export ${config_var}=$(cat $ENV_DIR/${config_var})
+    fi
+  done
+}
+
+export_config_vars
+
 # Install Crystal
 echo "-----> Installing Crystal"
 mkdir -p $CRYSTAL_DIR
