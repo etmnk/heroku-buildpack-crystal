@@ -1,7 +1,13 @@
 #!/bin/bash
 
+SECRET_KEY=$(cat /dev/urandom | LC_CTYPE=C tr -dc 'a-z0-9' | head -c 64)
+
 cat << EOF
+
+SECRET_KEY
 ---
+config_vars:
+  SECRET_KEY: $SECRET_KEY
 addons:
   []
 default_process_types:
