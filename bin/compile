@@ -35,4 +35,5 @@ if [ -f shard.yml ]; then
 fi
 
 echo "-----> Compiling Frost"
+make db_migrate
 make build
