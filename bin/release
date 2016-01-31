@@ -1,15 +1,10 @@
-#!/bin/bash
-
-SECRET_KEY=$(cat /dev/urandom | LC_CTYPE=C tr -dc 'a-z0-9' | head -c 64)
+#!/usr/bin/env bash
 
 cat << EOF
 
-SECRET_KEY
 ---
-config_vars:
-  SECRET_KEY: $SECRET_KEY
 addons:
-  []
+  - heroku-postgresql:hobby-dev
 default_process_types:
   web: make run
 EOF

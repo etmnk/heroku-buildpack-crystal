@@ -4,7 +4,7 @@ function compile_app() {
 
   cd $build_path
   output_section "Compiling"
-  $build_command
+  exec_commands
 
   export GIT_DIR=$git_dir_value
   cd - > /dev/null

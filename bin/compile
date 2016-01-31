@@ -12,8 +12,9 @@ mkdir -p $1 $2 $3
 build_path=$(cd $1 && pwd)
 cache_path=$(cd $2 && pwd)
 env_path=$(cd $3 && pwd)
+crystal_path=/tmp/crystal
+mkdir -p $crystal_path
 
-source ${build_pack_path}/lib/path_funcs.sh
 source ${build_pack_path}/lib/misc_funcs.sh
 source ${build_pack_path}/lib/crystal_funcs.sh
 source ${build_pack_path}/lib/app_funcs.sh
@@ -25,10 +26,6 @@ check_stack
 clean_cache
 
 download_crystal
-install_crystal
-install_shards
 
-restore_app
-app_dependencies
+install_shards
 compile_app
-backup_app

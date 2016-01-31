@@ -27,7 +27,7 @@ function load_config() {
   local custom_config_file="${build_path}/crystal_buildpack.config"
 
   # Source for default versions file from buildpack first
-  source "${build_pack_path}/crystal_buildpack.config"
+  #source "${build_pack_path}/crystal_buildpack.config"
 
   if [ -f $custom_config_file ];
   then
@@ -43,6 +43,7 @@ function load_config() {
   output_line "* Crystal ${crystal_version[0]} ${crystal_version[1]}"
   output_line "Will export the following config vars:"
   output_line "* Config vars ${config_vars_to_export[*]}"
+  output_line "* Exec commands ${build_command[*]}"
 }
 
 
@@ -50,7 +51,7 @@ function init_default_config {
   crystal_version=$(curl -sI https://github.com/manastech/crystal/releases/latest | awk -F'/' '/^Location:/{print $NF}')
   always_rebuild=false
   config_vars_to_export=(DATABASE_URL)
-  build_command=$(make db_migrate && make bin/frost_sample)
+  build_command=("make run")
 }
 
 
@@ -83,4 +84,10 @@ function clean_cache() {
     output_section "Cleaning all cache to force rebuilds"
     rm -rf $cache_path/*
   fi
+}
+
+function exec_commands() {
+  for cmd in ${build_command[@]}; do
+    $cmd
+  done
 }
