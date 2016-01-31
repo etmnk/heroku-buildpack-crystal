@@ -1,6 +1,6 @@
 function download_crystal() {
   # If a previous download does not exist, then always re-download
-  if [ ${force_fetch} = true ] || [ ! -f ${crystal_path}/$(crystal_download_file) ]; then
+  if [[ ${force_fetch} = true ]] || [ ! -f ${crystal_path}/$(crystal_download_file) ]; then
     clean_crystal_downloads
     crystal_changed=true
 
