@@ -40,8 +40,7 @@ config_vars_to_export=(DATABASE_URL)
 post_compile="pwd"
 
 # Build command
-build_command=("make db_migrate")
-build_command=("make build")
+build_command=("make db_migrate" "make build")
 ```
 
 #### Specifying config vars to export at compile time
