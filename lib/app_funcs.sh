@@ -9,3 +9,19 @@ function compile_app() {
   export GIT_DIR=$git_dir_value
   cd - > /dev/null
 }
+
+function restore_app() {
+  if [ $crystal_changed != true ]; then
+    if [ -d $(build_backup_path) ]; then
+      cp -pR $(build_backup_path) ${build_path}/_build
+    fi
+  fi
+}
+
+function backup_app() {
+  if [ $crystal_changed != true ]; then
+    if [ -d ${build_path}/_build ]; then
+      cp -pR ${build_path}/_build $(build_backup_path)
+    fi
+  fi
+}

@@ -8,11 +8,29 @@ function download_crystal() {
 
     cd $crystal_path
     local download_url="https://github.com/manastech/crystal/releases/download/${crystal_version}/crystal-${crystal_version}-1-linux-x86_64.tar.gz"
-    curl -sL ${download_url} | tar xz -C ./ --strip-component=1
-    export PATH=$crystal_path/bin:${PATH}
+    curl -sL ${download_url} -o ${cache_path}/$(crystal_download_file) || exit 1
+    #curl -sL ${download_url} | tar xz -C ./ --strip-component=1
+    #export PATH=$crystal_path/bin:${PATH}
   else
     output_section "Using cached Crystal ${crystal_version}"
   fi
+}
+
+
+function install_crystal() {
+  output_section "Installing Crystal ${crystal_version} $crystal_changed"
+
+  mkdir -p $(crystal_path)
+  cd $(crystal_path)
+
+  tar -xzf ${cache_path}/$(crystal_download_file) --strip-component=1
+
+  cd - > /dev/null
+
+  chmod +x $(crystal_path)/bin/*
+  PATH=$(crystal_path)/bin:${PATH}
+
+  export LC_CTYPE=en_US.utf8
 }
 
 
