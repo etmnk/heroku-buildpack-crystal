@@ -35,6 +35,7 @@ function load_config() {
   else
     output_line "WARNING: crystal_buildpack.config wasn't found in the app"
     output_line "Using default config"
+    force_fetch=true
     source init_default_config
   fi
 
