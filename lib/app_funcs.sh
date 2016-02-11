@@ -10,18 +10,24 @@ function compile_app() {
   cd - > /dev/null
 }
 
-function restore_app() {
-  if [ $crystal_changed != true ]; then
-    if [ -d $(build_backup_path) ]; then
-      cp -pR $(build_backup_path) ${build_path}/_build
-    fi
+
+function post_compile_hook() {
+  cd $build_path
+
+  if [ -n "$post_compile" ]; then
+    output_section "Executing post compile: $post_compile"
+    $post_compile || exit 1
   fi
+
+  cd - > /dev/null
 }
 
-function backup_app() {
-  if [ $crystal_changed != true ]; then
-    if [ -d ${build_path}/_build ]; then
-      cp -pR ${build_path}/_build $(build_backup_path)
-    fi
-  fi
+
+function write_profile_d_script() {
+  output_section "Creating .profile.d with env vars"
+  mkdir -p $build_path/.profile.d
+
+  local export_line="export PATH=\$HOME/.platform_tools:\$HOME/.platform_tools/crystal/bin:\$PATH
+                     export LC_CTYPE=en_US.utf8"
+  echo $export_line >> $build_path/.profile.d/crystal_buildpack_paths.sh
 }

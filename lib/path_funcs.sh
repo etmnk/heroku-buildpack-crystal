@@ -5,7 +5,3 @@ function platform_tools_path() {
 function crystal_path() {
   echo "$(platform_tools_path)/crystal"
 }
-
-function build_backup_path() {
-  echo $cache_path/build_backup
-}
