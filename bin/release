@@ -3,8 +3,6 @@
 cat << EOF
 
 ---
-addons:
-  - heroku-postgresql:hobby-dev
 default_process_types:
   web: make run
 EOF

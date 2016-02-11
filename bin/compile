@@ -26,9 +26,8 @@ clean_cache
 
 download_crystal
 install_crystal
-
-restore_app
-
 install_shards
 compile_app
-backup_app
+
+post_compile_hook
+write_profile_d_script
