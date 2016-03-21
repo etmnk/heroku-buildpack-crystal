@@ -7,10 +7,8 @@ function download_crystal() {
     output_section "Fetching crystal ${crystal_version}"
 
     cd $crystal_path
-    local download_url="https://github.com/manastech/crystal/releases/download/${crystal_version}/crystal-${crystal_version}-1-linux-x86_64.tar.gz"
+    local download_url="https://github.com/crystal-lang/crystal/releases/download/${crystal_version}/crystal-${crystal_version}-1-linux-x86_64.tar.gz"
     curl -sL ${download_url} -o ${cache_path}/$(crystal_download_file) || exit 1
-    #curl -sL ${download_url} | tar xz -C ./ --strip-component=1
-    #export PATH=$crystal_path/bin:${PATH}
   else
     output_section "Using cached Crystal ${crystal_version}"
   fi

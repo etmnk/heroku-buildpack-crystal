@@ -8,20 +8,20 @@ following command:
 #### Create a Heroku app with this buildpack
 
 ```
-heroku create --buildpack "https://github.com/etmnk/heroku-buildpack-crystal.git"
+heroku create --buildpack "https://github.com/ucmsky/heroku-buildpack-crystal.git"
 ```
 
 #### Set the buildpack of an existing Heroku app
 
 ```
-heroku config:set BUILDPACK_URL="https://github.com/etmnk/heroku-buildpack-crystal.git"
+heroku config:set BUILDPACK_URL="https://github.com/ucmsky/heroku-buildpack-crystal.git"
 ```
 
 ## Configuration
 
 Create a `crystal_buildpack.config` file in your app's root dir. The file's syntax is bash.
 
-If you don't specify a config option, then the default option from the buildpack's [`crystal_buildpack.config`](https://github.com/crystal/heroku-buildpack-crystal/blob/master/crystal_buildpack.config) file will be used.
+If you don't specify a config option, then the default option from the buildpack's [`crystal_buildpack.config`](https://github.com/ucmsky/heroku-buildpack-crystal/blob/master/crystal_buildpack.config) file will be used.
 
 
 __Here's a full config file with all available options:__
