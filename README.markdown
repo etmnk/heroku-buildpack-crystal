@@ -21,8 +21,8 @@ heroku config:set BUILDPACK_URL="https://github.com/ucmsky/heroku-buildpack-crys
 
 Create a `crystal_buildpack.config` file in your app's root dir. The file's syntax is bash.
 
-If you don't specify a config option, then the default option from the buildpack's [`crystal_buildpack.config`](https://github.com/ucmsky/heroku-buildpack-crystal/blob/master/crystal_buildpack.config) file will be used.
-
+For your reference [`crystal_buildpack.config`](https://github.com/ucmsky/heroku-buildpack-crystal/blob/
+master/crystal_buildpack.config).
 
 __Here's a full config file with all available options:__
 
@@ -55,6 +55,18 @@ heroku config:set MY_VAR=the_value
 
 ```
 config_vars_to_export=(DATABASE_URL MY_VAR)
+```
+
+#### Default config
+
+If you don't specify a config option, then the default option file will be used.
+
+```
+# Use latest version
+crystal_version=$(curl -sI https://github.com/manastech/crystal/releases/latest | awk -F'/' '/^Location:/{print $NF}')
+always_rebuild=false
+config_vars_to_export=(DATABASE_URL)
+build_command=("make run")
 ```
 
 ## Other notes
