@@ -8,20 +8,20 @@ following command:
 #### Create a Heroku app with this buildpack
 
 ```
-heroku create --buildpack "https://github.com/ucmsky/heroku-buildpack-crystal.git"
+heroku create --buildpack "https://github.com/ucdmsky/heroku-buildpack-crystal.git"
 ```
 
 #### Set the buildpack of an existing Heroku app
 
 ```
-heroku config:set BUILDPACK_URL="https://github.com/ucmsky/heroku-buildpack-crystal.git"
+heroku config:set BUILDPACK_URL="https://github.com/ucdmsky/heroku-buildpack-crystal.git"
 ```
 
 ## Configuration
 
 Create a `crystal_buildpack.config` file in your app's root dir. The file's syntax is bash.
 
-For your reference [`crystal_buildpack.config`](https://github.com/ucmsky/heroku-buildpack-crystal/blob/
+For your reference [`crystal_buildpack.config`](https://github.com/ucdmsky/heroku-buildpack-crystal/blob/
 master/crystal_buildpack.config).
 
 __Here's a full config file with all available options:__
@@ -63,7 +63,7 @@ If you don't specify a config option, then the default option file will be used.
 
 ```
 # Use latest version
-crystal_version=$(curl -sI https://github.com/manastech/crystal/releases/latest | awk -F'/' '/^Location:/{print $NF}')
+crystal_version=LATEST_VERSION
 always_rebuild=false
 config_vars_to_export=(DATABASE_URL)
 build_command=("make run")
