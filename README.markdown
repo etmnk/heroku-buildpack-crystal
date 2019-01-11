@@ -8,27 +8,26 @@ following command:
 #### Create a Heroku app with this buildpack
 
 ```
-heroku create --buildpack "https://github.com/ucdmsky/heroku-buildpack-crystal.git"
+heroku create --buildpack "https://github.com/msky026/heroku-buildpack-crystal.git"
 ```
 
 #### Set the buildpack of an existing Heroku app
 
 ```
-heroku config:set BUILDPACK_URL="https://github.com/ucdmsky/heroku-buildpack-crystal.git"
+heroku config:set BUILDPACK_URL="https://github.com/msky026/heroku-buildpack-crystal.git"
 ```
 
 ## Configuration
 
 Create a `crystal_buildpack.config` file in your app's root dir. The file's syntax is bash.
 
-For your reference [`crystal_buildpack.config`](https://github.com/ucdmsky/heroku-buildpack-crystal/blob/
-master/crystal_buildpack.config).
+For your reference [crystal_buildpack.config](https://github.com/msky026/heroku-buildpack-crystal/blob/master/crystal_buildpack.config).
 
 __Here's a full config file with all available options:__
 
 ```
 # Crystal version
-crystal_version=0.10.2
+crystal_version=0.24.0
 
 # Always rebuild from scratch on every deploy?
 always_rebuild=false
@@ -40,7 +39,7 @@ config_vars_to_export=(DATABASE_URL)
 post_compile="pwd"
 
 # Build command
-build_command=("make db_migrate" "make build")
+build_command=("shards update" "make db_migrate" "make build")
 ```
 
 #### Specifying config vars to export at compile time
